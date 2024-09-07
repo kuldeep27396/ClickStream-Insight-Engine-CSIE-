@@ -42,7 +42,10 @@ def produce_events(producer, events_per_second):
             time.sleep(1 - elapsed_time)
 
 def main():
-    producer = KafkaProducer(bootstrap_servers=[KAFKA_BROKER])
+    producer = KafkaProducer(
+        bootstrap_servers=['localhost:9092'],
+        api_version=(0, 10, 1)
+    )
     events_per_second = 50000
     num_threads = 10
     events_per_thread = events_per_second // num_threads
